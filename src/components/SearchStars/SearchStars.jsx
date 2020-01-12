@@ -6,9 +6,7 @@ export default function SearchStars(props) {
     for (let i = 1; i < 6; i++) {
       if (i <= count) {
         stars.push(
-          <span
-            key={i}
-            onClick={() => (i === count ? props.search(i - 1) : props.search(i))}>
+          <span key={i} onClick={() => props.search(i === count ? i - 1 : i)}>
             ★
           </span>
         );
