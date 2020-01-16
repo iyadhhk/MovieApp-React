@@ -7,6 +7,7 @@ import SearchStars from './components/SearchStars/SearchStars';
 
 class App extends React.Component {
   state = {
+    loading: true,
     rate: 0,
     searchText: '',
     movieTab: [
@@ -117,6 +118,12 @@ class App extends React.Component {
     ],
   };
 
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 3000);
+  };
+
   showHideModal = () => {
     this.setState({
       show: !this.state.show,
@@ -148,7 +155,11 @@ class App extends React.Component {
           <SearchField searchMovie={this.searchWithName} />
           <SearchStars search={this.searchWithRate} rate={this.state.rate} />
         </div>
-        <MovieList mymodal={this.showHideModal} movies={movies} />
+        <MovieList
+          loading={this.state.loading}
+          mymodal={this.showHideModal}
+          movies={movies}
+        />
         <AddMovie
           show={this.state.show}
           hide={this.showHideModal}
